@@ -1,0 +1,25 @@
+\documentclass[a4paper]{article}
+
+\usepackage{include/StyleSheet}
+
+\addbibresource{Bibliography/Sources.bib}
+
+\input{sections/Titulo}
+
+\begin{document}
+
+\maketitle
+
+\input{sections/0-Abstract}
+\input{sections/1-Introduccion}
+\input{sections/2-Desarrollo}
+\input{sections/3-Resultados_Discusion}
+\input{sections/4-Conclusiones}
+
+% Con esto agregamos el apendice
+\input{sections/Apendice}
+
+% Con esto ponemos la bibliografia
+\printbibliography
+
+\end{document}
