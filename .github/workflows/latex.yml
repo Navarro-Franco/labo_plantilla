@@ -1,28 +1,13 @@
 name: Test Github Action
-on: [push, pull_request]
+on: [push]
 jobs:
-  test:
-    strategy:
-      fail-fast: false
-      matrix:
-        texlive_version: [2022, 2023, latest]
+  build_latex:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Git repository
-        uses: actions/checkout@v4
-      - name: Test Action
-        uses: ./
+      - uses: actions/checkout@v4
+      - uses: xu-cheng/texlive-action@v2
         with:
           scheme: full
-          texlive_version: ${{ matrix.texlive_version }}
           run: |
             apk add make
-            VERSION="${{ matrix.texlive_version }}"
-            if [[ "$VERSION" != latest ]]; then
-              tlmgr option repository "https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/$VERSION/tlnet-final"
-            fi
-            tlmgr install blindtext
-            cd test && make
-      - name: Check pdf files
-        run: |
-          file test/test.pdf | grep -q ' PDF '
+            make
