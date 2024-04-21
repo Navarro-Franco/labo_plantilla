@@ -11,8 +11,6 @@ jobs:
           run: |
             apk add make
             make
-      - name: Commit y Push el pdf
-          run: |
             git config user.name <username>
             git config user.email <email>
             git add .
